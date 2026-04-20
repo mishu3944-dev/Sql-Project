@@ -1,0 +1,163 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SalaryApp
+{
+    // Abstract Person class
+    abstract class Person
+    {
+        public string Name { get; set; }
+
+
+        protected Person(string name)
+        {
+            Name = name;
+        }
+
+        public abstract void DisplayInfo();
+    }
+
+    // Overtime Interface
+    interface IOvertime
+    {
+        double CalculateOvertime(int hoursWorked);
+    }
+
+    // Role class
+    class Role
+    {
+        public string RoleName { get; set; }
+        public string Description { get; set; }
+
+        public Role(string roleName, string description)
+        {
+            RoleName = roleName;
+            Description = description;
+        }
+    }
+
+    // Employee class (sealed, cannot be inherited)
+    sealed class Employee : Person, IOvertime
+    {
+        public string Designation { get; set; }
+        public double Basic { get; set; }
+        public double HouseRent { get; private set; }
+        public double Medical { get; set; }
+        public double Conveyance { get; private set; }
+        public double OvertimePay { get; private set; }
+        public double GrossSalary { get; private set; }
+
+        private List<Role> Roles;
+
+        public Employee(string name, string designation, double basic, double medical)
+            : base(name)
+        {
+            Designation = designation;
+            Basic = basic;
+            Medical = medical;
+            Roles = new List<Role>();
+        }
+
+        // Implement IOvertime
+        public double CalculateOvertime(int hoursWorked)
+        {
+            double hourlyRate = Basic / (22 * 8); 
+            return 2 * hourlyRate * hoursWorked;
+        }
+
+        // Calculate salary
+        public void CalculateSalary(int overtimeHours)
+        {
+            HouseRent = 0.40 * Basic;
+            Conveyance = 0.05 * Basic;
+            OvertimePay = CalculateOvertime(overtimeHours);
+            GrossSalary = Basic + HouseRent + Medical + Conveyance + OvertimePay;
+        }
+
+        // Add Role
+        public void AddRole(Role r)
+        {
+            Roles.Add(r);
+        }
+
+        // Display Employee Info
+        public override void DisplayInfo()
+        {
+            Console.WriteLine("\n===== Salary Slip =====");
+            Console.WriteLine($"Name: {Name}");
+            Console.WriteLine($"Designation: {Designation}");
+            Console.WriteLine($"Basic Salary: {Basic}");
+            Console.WriteLine($"House Rent (40%): {HouseRent}");
+            Console.WriteLine($"Medical: {Medical}");
+            Console.WriteLine($"Conveyance (5%): {Conveyance}");
+            Console.WriteLine($"Overtime: {OvertimePay}");
+            Console.WriteLine($"Gross Salary: {GrossSalary}");
+
+            Console.WriteLine("\n--- Roles ---");
+            if (Roles.Count == 0)
+            {
+                Console.WriteLine("No roles assigned.");
+            }
+            else
+            {
+                foreach (var role in Roles)
+                {
+                    Console.WriteLine($"Role: {role.RoleName}, Description: {role.Description}");
+                }
+            }
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Enter Name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Enter Designation: ");
+            string designation = Console.ReadLine();
+
+            Console.Write("Enter Basic Salary: ");
+            double basic = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Enter Medical Allowance: ");
+            double medical = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Enter Overtime Hours: ");
+            int hours = Convert.ToInt32(Console.ReadLine());
+
+            // Create employee
+            Employee emp = new Employee(name, designation, basic, medical);
+
+            // Add Roles
+            Console.WriteLine("Do you want to add roles? (y/n)");
+            string choice = Console.ReadLine().ToLower();
+            while (choice == "y")
+            {
+                Console.Write("Enter Role Name: ");
+                string roleName = Console.ReadLine();
+
+                Console.Write("Enter Role Description: ");
+                string description = Console.ReadLine();
+
+                emp.AddRole(new Role(roleName, description));
+
+                Console.Write("Add another role? (y/n): ");
+                choice = Console.ReadLine().ToLower();
+            }
+
+            // Salary calculation
+            emp.CalculateSalary(hours);
+
+            // Display Slip
+            emp.DisplayInfo();
+
+            Console.WriteLine("\nProgram Finished. Press any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}

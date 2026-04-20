@@ -1,0 +1,261 @@
+Question 1: How does ASP.NET Core relate to console applications? 
+
+a. ASP.NET Core and console applications are entirely separate and unrelated. 
+
+b. Console applications are built on top of ASP.NET Core. 
+
+c. ASP.NET Core is an additional layer on top of console applications for converting them into web applications. 
+
+d. Console applications are a prerequisite for using ASP.NET Core.
+
+Question 2: Which of the following middleware is required to serve the CSS and image files from the wwwroot folder? 
+
+a. exception handler middleware 
+
+b. routing middleware 
+
+c. static-file middleware 
+
+d. endpoint middleware
+
+Question 3: Which IActionResult type would you use to generate an HTML view for a given Razor view when using MVC controllers? 
+
+a. PageResult 
+
+b. ViewResult 
+
+c. RedirectToPageResult 
+
+d. RedirectResult
+
+4: Consider the code in a Razor page:
+public class CategoryModel : PageModel
+{
+    private readonly CategoryService _service;
+    public CategoryModel(CategoryService service)
+    {
+        _service = service;
+    }
+
+    public ActionResult OnGet(string category)
+    {
+        Items = _service.GetItemsForCategory(category);
+        return Page();
+    }
+
+    public List Items { get; set; }
+}
+
+
+
+Which of the following is the page handler? 
+
+a. OnGet(string category) 
+
+b. CategoryModel(CategoryService service) 
+
+c. List Items { get; set; } 
+
+d. return Page()
+
+5. In which scenario is it recommended to use MVC Controllers instead of Razor Pages? 
+
+a. When building page-based server-side rendered applications. 
+
+b. When developing a mobile application. 
+
+c. When rendering views is not required, such as for a Web API. 
+
+d. When transitioning from an existing Razor Pages application.
+
+Question 6
+
+What is middleware in ASP.NET Core? 
+
+
+a. Middleware are components that capture user requests and data and forward them to the ASP.NET Core web server. 
+
+
+b. Middleware are C# classes or functions that handle an HTTP request or response. 
+
+
+c. Middleware are C# classes or functions that handle business logic. 
+
+
+d. Middleware are C# classes or functions that handle an async request or response.
+
+7. What is the process of controlling what a user can do based on their identity? 
+
+a. Authentication 
+
+b. Authorization 
+
+c. Filtering 
+
+d. Protection
+
+9. Which platform does ASP.NET Core primarily run on? 
+
+a. .NET Framework 
+
+b. .NET Core only 
+
+c. .NET 5.0 only 
+
+d. .NET 5.0 with the Windows Compatibility Pack
+
+10. Which approach is used for authenticating APIs and distributed applications? 
+
+a. External authentication (Facebook or Google) 
+
+b. Identity provider 
+
+c. Forms authentication 
+
+d. Windows authentication
+Question 11
+
+If a request reaches the end of the middleware pipeline without being handled, what will be returned? 
+
+
+a. 404 status code.
+
+
+b. 500 status code.
+
+c. A plain text response body indicating the type and name of the response.
+
+
+d. A generic error page.
+
+12. What is the main responsibility of the Startup class in an ASP.NET Core application? 
+
+a. Handling HTTP requests. 
+
+b. Managing database connections. 
+
+c. Configuring service registration and middleware. 
+
+d. Generating HTML templates.
+
+13. What should you use to prevent anonymous users from accessing a page or action? 
+
+a. AllowAnonymous(false) attribute 
+
+b. [Authorize] attribute 
+
+c. [Route] attribute 
+d. Global Authorization filter
+
+14. When might it be easier to achieve partial page updates using MVC controllers instead of Razor Pages? 
+
+a. When developing a single-page application (SPA) 
+
+b. When using Web Forms for server-side rendering 
+
+c. When building page-based server-side rendered applications 
+
+d. When doing a lot of partial page updates with JavaScript
+
+15. Which command publishes an ASP.NET Core application with a release configuration? 
+
+a. dotnet publish --output publish 
+
+b. dotnet build --output publish --configuration Release 
+
+c. dotnet deploy --output publish --configuration Release 
+
+d. dotnet run --output publish --configuration Release
+16. Which of the following is NOT true about ASP.NET Core? 
+
+a. It is a cross-platform, open-source web application framework for building dynamic, server-side rendered applications 
+
+b. It has built-in support to create HTTP APIs for mobile, browser-based SPAs, or other backend applications 
+
+c. It can be used to create native mobile applications that run on Android and iOS platforms 
+
+d. It provides structure, helper functions, and a framework for building applications
+17. Which type of project is specifically used to build server-side rendered "page-based" websites? 
+
+a. ASP.NET Core Razor Pages 
+
+b. ASP.NET Core MVC 
+
+c. ASP.NET Core Web API 
+
+d. Windows Form Core
+18. How does composing multiple middleware components benefit ASP.NET Core applications? 
+
+a. It increases application complexity 
+
+b. It decreases application flexibility 
+
+c. It allows for the creation of complex application behaviors from small, focused components 
+
+d. It reduces the number of components required
+19. Which of the following tasks cannot be performed within middleware? 
+
+a. Handling the request and generating a response 
+
+b. Logging each request 
+
+c. Adding standard security headers to the response 
+
+d. Associating a request with the relevant set
+20. What is middleware in the context of ASP.NET Core? 
+
+a. A piece of hardware used for network communication 
+
+b. A software component responsible for generating HTML pages 
+
+c. C# classes that handle HTTP requests or responses 
+
+d. A type of database management system
+
+21. What does "middleware configuration" refer to within the Startup class? 
+
+a. Configuring authentication and authorization policies 
+
+b. Registering service dependencies 
+
+c. Handling and responding to HTTP requests 
+
+d. Configuring database connections
+22. To what level of scope can a filter be applied? 
+
+a. The action method 
+
+b. The controller 
+
+c. Globally 
+
+d. All of the above
+
+23. Which version of ASP.NET Core introduced the Razor Pages programming model? 
+
+a. ASP.NET Core 1.0 
+
+b. ASP.NET Core 2.0 
+
+c. ASP.NET Core 3.0 
+
+d. ASP.NET Core 4.0
+
+24. Where is service registration typically configured in the Startup class? 
+
+a. In the ConfigureServices method 
+
+b. In the ConfigureEndpoints method 
+
+c. In the Configure method 
+
+d. In the ConfigureMiddleware method
+25. Which file controls how Visual Studio runs and debugs the application? 
+
+a. .sln file 
+
+b. .csproj file 
+
+c. appsettings.json 
+
+d. launchSettings.json
